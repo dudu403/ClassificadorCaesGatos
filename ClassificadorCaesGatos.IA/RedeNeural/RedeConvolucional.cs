@@ -13,30 +13,33 @@ public sealed class RedeConvolucional : Module<Tensor, Tensor>
     {
         _features = Sequential(
             Conv2d(3, 32, kernel_size: 3, stride: 1, padding: 1),
+            BatchNorm2d(32),
             ReLU(),
             MaxPool2d(kernel_size: 2, stride: 2),
 
             Conv2d(32, 64, kernel_size: 3, stride: 1, padding: 1),
+            BatchNorm2d(64),
             ReLU(),
             MaxPool2d(kernel_size: 2, stride: 2),
 
             Conv2d(64, 128, kernel_size: 3, stride: 1, padding: 1),
+            BatchNorm2d(128),
             ReLU(),
             MaxPool2d(kernel_size: 2, stride: 2),
 
-            Conv2d(128, 128, kernel_size: 3, stride: 1, padding: 1),
+            Conv2d(128, 256, kernel_size: 3, stride: 1, padding: 1),
+            BatchNorm2d(256),
             ReLU(),
-            MaxPool2d(kernel_size: 2, stride: 2)
+            AdaptiveAvgPool2d(new long[] { 1, 1 })
         );
 
         _classificador = Sequential(
             Flatten(),
-            Linear(128 * 14 * 14, 256),
+            Dropout(0.5),
+            Linear(256, 128),
             ReLU(),
-            Dropout(0.3),
-            Linear(256, 64),
-            ReLU(),
-            Linear(64, 2)
+            Dropout(0.5),
+            Linear(128, 2)
         );
 
         RegisterComponents();
