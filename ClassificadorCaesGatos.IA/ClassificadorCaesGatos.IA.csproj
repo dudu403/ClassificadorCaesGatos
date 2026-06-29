@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="5.0.0" />
+    <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="5.0.0" />
+    <PackageReference Include="Microsoft.ML.Vision" Version="5.0.0" />
+    <PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.16.0" />
     <PackageReference Include="ScottPlot" Version="5.1.59" />
     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.8" />
     <PackageReference Include="TorchSharp-cuda-windows" Version="0.107.0" />
